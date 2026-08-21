@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まず動かしてみよう。 - AI開発 実行アシスタント</title>
+  <meta name="description" content="AIが作ったソフトウェアを実際に動かしてみるまでの手順を整理し、AIへの実行方法確認質問を即時生成する無料Webツールです。">
+  <meta property="og:title" content="まず動かしてみよう。 - AI開発 実行アシスタント">
+  <meta property="og:description" content="AIが作ってくれた。じゃあ、まず動かしてみよう。実行方法をAIに確認するための手順整理ツール。">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Header / Hero -->
+    <header class="app-header">
+      <div class="badge">シリーズ第4弾 / 初心者向け無料Webツール</div>
+      <h1 class="title">まず動かしてみよう。</h1>
+      <p class="subtitle">AI開発 実行アシスタント</p>
+      <div class="lead-box">
+        <p>AIにコードを作ってもらったけれど、<strong>「これ、どうやって動かすの？」</strong>となったことはありませんか？</p>
+        <p>最初から完璧を目指す必要はありません。<strong>作ったものをまず動かしてみる。</strong>動けば確認し、動かなければAIに聞く。その最初の一歩をサポートします。</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Step 1: Input Section -->
+      <section class="card screen-section" id="inputSection" aria-labelledby="inputHeading">
+        <div class="card-header">
+          <h2 class="section-title" id="inputHeading">
+            <span class="step-num">1</span> 何を作ってもらいましたか？
+          </h2>
+          <span class="char-counter" id="charCount">0 文字</span>
+        </div>
+
+        <div class="preset-chips">
+          <span class="preset-label">よくある例:</span>
+          <button type="button" class="chip" data-example="Windows用のファイル名変更ツール">Windows用のファイル名変更ツール</button>
+          <button type="button" class="chip" data-example="Pythonで作ったCSV集計ツール">Pythonで作ったCSV集計ツール</button>
+          <button type="button" class="chip" data-example="HTMLで作ったWebアプリ">HTMLで作ったWebアプリ</button>
+          <button type="button" class="chip" data-example="画像を一括変換するツール">画像を一括変換するツール</button>
+        </div>
+
+        <div class="textarea-wrapper">
+          <textarea
+            id="userInput"
+            rows="4"
+            placeholder="例：PythonでCSVファイルを集計してグラフにするツールを作ってもらった&#10;例：Windowsで動くデスクトップのファイル整理バッチを作ってもらった&#10;※ 自由に入力してください。形式にこだわる必要はありません。"
+            autofocus
+          ></textarea>
+        </div>
+
+        <!-- Optional Context Details -->
+        <div class="optional-accordion">
+          <button type="button" class="accordion-toggle" id="toggleDetailBtn" aria-expanded="false">
+            <span class="toggle-left">
+              <span class="toggle-icon">▶</span>
+              <span>補足情報（PC環境やファイル名など）を追加する（任意）</span>
+            </span>
+          </button>
+          <div class="accordion-content is-hidden" id="optionalContent">
+            <div class="field-group">
+              <label for="envInput" class="field-label">あなたのPC環境（例：Windows 11, Mac, Chromeブラウザ など）</label>
+              <input type="text" id="envInput" placeholder="例: Windows 11 / Pythonインストール済み">
+            </div>
+            <div class="field-group">
+              <label for="filesInput" class="field-label">AIから渡されたファイル名やコード（例：app.py, index.html など）</label>
+              <input type="text" id="filesInput" placeholder="例: main.py と requirements.txt">
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="btn btn-primary btn-large" id="generateBtn">
+            🚀 実行確認の質問を作る
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 2: Result Prompt Section (Initially Hidden) -->
+      <section class="card screen-section is-hidden" id="resultSection" aria-labelledby="resultHeading">
+        <div class="card-header result-header-row">
+          <h2 class="section-title" id="resultHeading">
+            <span class="step-num">2</span> AIに実行方法を聞いてみよう
+          </h2>
+          <div class="action-row">
+            <button type="button" class="btn btn-copy" id="copyBtn">
+              📋 質問文をコピー
+            </button>
+            <button type="button" class="btn btn-secondary btn-icon" id="editToggleBtn">
+              ✏️ 修正する
+            </button>
+          </div>
+        </div>
+
+        <p class="guide-desc">
+          以下の質問文をコピーして、ChatGPT、Claude、GeminiなどのAIへそのまま送信してください。
+        </p>
+
+        <!-- Prompt Content -->
+        <div class="prompt-box" id="promptDisplay"></div>
+        <textarea class="prompt-textarea" id="promptEditArea" style="display: none;"></textarea>
+
+        <div class="action-row" style="margin-top: 18px;">
+          <button type="button" class="btn btn-primary" id="toStep3Btn">
+            👉 AIから返答をもらったら「動作確認」へ進む
+          </button>
+          <button type="button" class="btn btn-ghost" id="resetBtn">
+            🔄 もう一度作る
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 3: Verification & Decision Section (Initially Hidden) -->
+      <section class="card screen-section is-hidden" id="verifySection" aria-labelledby="verifyHeading">
+        <div class="card-header">
+          <h2 class="section-title" id="verifyHeading">
+            <span class="step-num">3</span> 実際に動かして確認する
+          </h2>
+        </div>
+
+        <div class="guide-list">
+          <div class="guide-step">
+            <div class="guide-num">1</div>
+            <div class="guide-text">
+              <div class="guide-title">AIの回答に従って準備・実行する</div>
+              <div class="guide-desc">必要なソフトを準備し、AIから指示されたファイル配置や実行コマンドを試してみましょう。</div>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-num">2</div>
+            <div class="guide-text">
+              <div class="guide-title">動作チェックリスト</div>
+              <div class="guide-desc">動かしてみて以下の項目を確認してみましょう（タップでチェック）：</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="check-list">
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-label">① ソフトウェアが起動した</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-label">② 期待した画面やメッセージが表示された</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-label">③ 目的の機能（ボタン操作や集計など）が動いた</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-label">④ 途中で止まったり、赤字のエラーが出ていない</span>
+          </label>
+        </div>
+
+        <!-- Decision Grid -->
+        <div class="result-decision-grid">
+          <button type="button" class="btn btn-success" id="btnSuccess">
+            🎉 動きました！
+          </button>
+          <button type="button" class="btn btn-warning" id="btnError">
+            ⚠️ エラーが出ました
+          </button>
+        </div>
+      </section>
+
+      <!-- Series Banner -->
+      <aside class="series-banner">
+        <div class="series-banner-title">躊躇してないで、とにかく作ってみよう。シリーズ</div>
+        <div class="series-flow">
+          <span class="series-item">① 何を作るか決めよう。</span>
+          <span class="series-arrow">→</span>
+          <span class="series-item">② 何を作ってもらおう。</span>
+          <span class="series-arrow">→</span>
+          <span class="series-item">③ AIに聞いてみよう。</span>
+          <span class="series-arrow">→</span>
+          <span class="series-item is-current">④ まず動かしてみよう。</span>
+          <span class="series-arrow">→</span>
+          <span class="series-item">⑤ エラーで止まらない。</span>
+        </div>
+      </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>まず動かしてみよう。 - AI開発 実行アシスタント</p>
+      <p>Zero-Dependency / MIT License &copy; 2026 tk030</p>
+    </footer>
+
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="modal-box">
+      <div class="modal-title">🎉 動きました！おめでとうございます！</div>
+      <div class="modal-desc">
+        <p>AIが作ったソフトウェアを実際に動かすことができました！これはAI開発における最も重要な第一歩です。</p>
+        <br>
+        <p>もし「思っていたものと少し違うな」「ここを追加したいな」と感じたら、その感想をそのままAIに伝えて改良していきましょう！</p>
+      </div>
+      <div class="action-row" style="margin-top: 8px;">
+        <button type="button" class="btn btn-primary" id="closeSuccessBtn">
+          ✨ 完了して次の開発へ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal (Next series bridge) -->
+  <div class="modal-backdrop" id="errorModal">
+    <div class="modal-box">
+      <div class="modal-title">💡 エラーが出ても大丈夫！</div>
+      <div class="modal-desc">
+        <p>AI開発では、<strong>「一発で動かない」のが普通</strong>です。ここで止まる必要はありません。</p>
+        <p>エラーメッセージをそのままコピーして、以下の質問文と一緒にAIへ丸投げしましょう。</p>
+      </div>
+      <div class="modal-error-prompt-box" id="errorPromptText">AIに教えてもらった手順で実行したところ、以下のエラーが出ました。
+
+【出たエラーの内容】
+（※ ここに画面に出たエラーや赤文字を貼り付ける）
+
+どこを直せばいいか、修正手順と直したコードを教えてください。</div>
+      <div class="action-row" style="margin-top: 8px;">
+        <button type="button" class="btn btn-warning" id="copyErrorPromptBtn">
+          📋 エラー相談プロンプトをコピー
+        </button>
+        <button type="button" class="btn btn-secondary" id="closeErrorBtn">
+          閉じる
+        </button>
+      </div>
+      <p class="guide-desc" style="font-size: 0.8rem; margin-top: 4px; color: var(--text-muted);">
+        ※ 次回作<strong>「エラーで止まらない。」</strong>でもエラー丸投げをさらに徹底サポートします！
+      </p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toastMessage">コピーしました！</span>
+  </div>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>

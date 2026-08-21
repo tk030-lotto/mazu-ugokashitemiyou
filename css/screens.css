@@ -1,0 +1,268 @@
+/* ----------------------------------------------------
+   css/screens.css
+   まず動かしてみよう。ツール - 画面レイアウト & レスポンシブ
+---------------------------------------------------- */
+
+/* Header / Hero */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+.lead-box {
+  background: #111116;
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 16px 20px;
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.lead-box p {
+  margin-bottom: 6px;
+}
+
+.lead-box p:last-child {
+  margin-bottom: 0;
+}
+
+.lead-box strong {
+  color: #ffffff;
+}
+
+/* Screen Transitions */
+.screen-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.screen-section.is-hidden {
+  display: none;
+}
+
+/* Prompt Result Screen */
+.result-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.copy-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Step Guides */
+.guide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.guide-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #141419;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.guide-num {
+  width: 24px;
+  height: 24px;
+  background: #24242c;
+  color: var(--text-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guide-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.guide-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.guide-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Result Buttons in Verification */
+.result-decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+/* Series Link Banner */
+.series-banner {
+  background: #101014;
+  border: 1px dashed var(--border-highlight);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.series-banner-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.series-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.series-item {
+  padding: 4px 10px;
+  background: #18181f;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.series-item.is-current {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.series-arrow {
+  color: var(--text-muted);
+}
+
+/* Modal Content Details */
+.modal-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.modal-error-prompt-box {
+  background: #0d0d10;
+  border: 1px solid #332314;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #fde68a;
+  white-space: pre-wrap;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  color: var(--text-accent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 20px 12px 60px;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .card {
+    padding: 18px 16px;
+  }
+  
+  .result-decision-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-row {
+    flex-direction: column;
+  }
+  
+  .action-row .btn {
+    width: 100%;
+  }
+}
