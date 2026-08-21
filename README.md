@@ -16,6 +16,9 @@ AIにコードを作ってもらった。
 
 このツールは、AIが作ったソフトウェアを実際に動かしてみるまでの手順を整理し、AIへの実行確認用プロンプトを即時生成するための無料Webツールです（Zero-Dependency / Vanilla HTML・CSS・JS）。
 
+- **WebツールURL**: https://tk030-lotto.github.io/mazu-ugokashitemiyou/  
+  *(※ 現在は非公開準備中。公開後に上記URLから直接利用可能になります)*
+
 ![デモアニメーション](demo.gif)
 
 ---
