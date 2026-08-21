@@ -1,4 +1,3 @@
-``markdown
 # まず動かしてみよう。
 
 ## AI開発 実行アシスタント
@@ -15,13 +14,11 @@ AIにコードを作ってもらった。
 
 となることがあります。
 
-このツールは、AIが作ったソフトウェアを実際に動かしてみるまでの手順を整理するための無料Webツールです。
+このツールは、AIが作ったソフトウェアを実際に動かしてみるまでの手順を整理し、AIへの実行確認用プロンプトを即時生成するための無料Webツールです（Zero-Dependency / Vanilla HTML・CSS・JS）。
 
 ---
 
-## コンセプト
-
-# まず動かしてみよう。
+## 💡 コンセプト
 
 AI開発では、最初から完璧なソフトウェアを作る必要はありません。
 
@@ -29,107 +26,88 @@ AI開発では、最初から完璧なソフトウェアを作る必要はあり
 
 > **作ったものを動かしてみる。**
 
-動けば確認する。
-
-動かなければAIに聞く。
-
+動けば確認する。  
+動かなければAIに聞く。  
 それでいい。
 
 ---
 
-## 使い方
+## 🚀 使い方
 
 ### 1. AIが作ったものについて入力する
-
 例えば、
+- 「Windows用のファイル名変更ツールを作ってもらった」
+- 「PythonでCSV集計ツールを作ってもらった」
+- 「HTMLのWebアプリを作ってもらった」
+- 「画像を一括変換するツールを作ってもらった」
 
-> 「Windows用のファイル名変更ツールを作ってもらった」
+など、プリセットチップを選ぶか自由に入力します。環境情報（Windows/Mac等）やファイル名の補足も任意で追加できます。
 
-> 「PythonでCSV集計ツールを作ってもらった」
+### 2. AIに実行方法を確認する質問を生成
+入力内容をもとに、AIに以下を確認するための質問文をワンクリックで生成します：
+- 必要な準備（必要なソフト・インストール手順）
+- どのファイルをどこに配置するか
+- 実行するための具体的な手順・コマンド
+- 正常に動いたか確認するチェックポイント
+- エラーが発生した場合の初動
 
-> 「HTMLのWebアプリを作ってもらった」
+### 3. ワンクリックでコピーしてAIへ送信
+生成された質問文をコピーし、ChatGPT、Claude、GeminiなどのAIへ送信して実行手順を教えてもらいます。
 
-など、簡単に入力します。
-
----
-
-### 2. AIに実行方法を確認する
-
-入力内容をもとに、AIに、
-
-- 何を準備すればいいか
-- どのファイルを使うのか
-- どこから実行するのか
-- 必要なソフトはあるか
-- 実行すると何が起こるのか
-
-を確認するための質問を作ります。
-
----
-
-### 3. AIの指示に従って動かしてみる
-
-生成された質問をAIへ送ります。
-
-AIから実行方法を教えてもらったら、その手順に従って実際に動かします。
+### 4. 実際に動かして動作確認
+AIから実行方法を教えてもらったら、手順に従って動かします。
+- **動いた場合**: 「動きました！」として完了。次の改良へ進みます。
+- **動かなかった場合**: エラーが出ても問題ありません。エラー解決用プロンプトをコピーしてAIに丸投げするか、シリーズ第5弾『エラーで止まらない。』へ進みます。
 
 ---
 
-### 4. 動いたら確認する
+## 🛡️ このツールがしないこと（安全設計）
 
-実際に動かしてみて、
-
-> 「思っていたものと違う」
-
-と思ったら、その内容をAIに伝えます。
+- このツール自身が利用者のPC上でコードやコマンドを実行することはありません。
+- AIが作ったソフトウェアを自動的に修正することもしません。
+- 目的は、**「AIが作ったものを、利用者が実際に動かしてみる」**ところまで進めることです。
 
 ---
 
-### 5. 動かなかったら
+## 📱 対応環境
 
-エラーが出ても問題ありません。
-
-ここで終わりではありません。
-
-エラー内容を確認し、
-
-**「エラーで止まらない。」**
-
-へ進んで、AIに原因と修正方法を聞いてみましょう。
+- **ブラウザ**: 最新のモダンブラウザ（Chrome, Edge, Safari, Firefox）
+- **デバイス**: スマートフォン（iOS, Android）およびPCブラウザに完全対応（レスポンシブ）
+- **インストール**: 不要（GitHub Pagesで利用可能）
+- **外部依存**: ゼロ（Zero-Dependency）
 
 ---
 
-## このツールがしないこと
+## 📚 「躊躇してないで、とにかく作ってみよう。」シリーズ
 
-このツール自身がコードを実行するわけではありません。
-
-また、AIが作ったソフトウェアを自動的に修正することもしません。
-
-目的は、
-
-> **「AIが作ったものを、実際に動かしてみる」**
-
-ところまで利用者を進めることです。
+1. **① 何を作るか決めよう。** - 「作りたいものがない」
+2. **② 何を作ってもらおう。** - 「アイデアを形にしたい」
+3. **③ AIに聞いてみよう。** - 「分からないことがある」
+4. **④ まず動かしてみよう。**（本作） - 「AIが作った。でも動かし方が分からない」
+5. **⑤ エラーで止まらない。** - 「エラーをAIに丸投げする」
 
 ---
 
-## 対象
-
-- AIにソフトウェアを作ってもらった人
-- 作ったものをどう実行すればいいか分からない人
-- AI開発初心者
-- 初めてAIでアプリを作った人
-
----
-
-## 公開
-
-GitHub Pagesで利用できる無料Webツールとして公開します。
-
-インストールは必要ありません。
-
----
-
-## ライセンス
+## 📄 ライセンス
 
 MIT License
+
+Copyright (c) 2026 tk030
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
