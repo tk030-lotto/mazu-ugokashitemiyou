@@ -1,5 +1,7 @@
 # まず動かしてみよう。
 
+WebツールURL: https://tk030-lotto.github.io/mazu-ugokashitemiyou/
+
 ## AIに作ってもらったけど、どうやって動かすの？
 
 AIにソフトウェアを作ってもらった。
@@ -363,3 +365,8 @@ AI開発は、最初から全部分かっている必要はありません。
 > **じゃあ、まず動かしてみよう。**
 
 そんなところから始めてみませんか。
+
+---
+
+- **Webツール（GitHub Pages）**: https://tk030-lotto.github.io/mazu-ugokashitemiyou/
+- **GitHubリポジトリ**: https://github.com/tk030-lotto/mazu-ugokashitemiyou
