@@ -9,7 +9,8 @@
 ### 2026-08-24
 - GitHubリポジトリの可視性を Private から Public に変更。
 - GitHub Pages を有効化し、`main` ブランチのルートをソースとしてデプロイ完了（公開URL: `https://tk030-lotto.github.io/mazu-ugokashitemiyou/`）。
-- `README.md` および `RECORD.md` を公開ステータスに更新。
+- リポジトリのAbout欄（Description, Homepage URL, Topics）を設定。
+- `README.md`、`RECORD.md`、`まず動かしてみよう。.txt` を公開ステータスおよびURL付きに更新。
 
 ### 2026-08-21
 - プライベートリポジトリ `tk030-lotto/mazu-ugokashitemiyou` を新規作成・GitHub連携完了。
