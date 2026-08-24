@@ -1,10 +1,15 @@
 # まず動かしてみよう。ツール - 開発・取り組み記録 (RECORD)
 
 ## リポジトリ情報
-- GitHub: https://github.com/tk030-lotto/mazu-ugokashitemiyou (Private)
-- GitHub Pages: https://tk030-lotto.github.io/mazu-ugokashitemiyou/ (準備中)
+- GitHub: https://github.com/tk030-lotto/mazu-ugokashitemiyou (Public)
+- GitHub Pages: https://tk030-lotto.github.io/mazu-ugokashitemiyou/ (公開完了)
 
 ## 開発記録
+
+### 2026-08-24
+- GitHubリポジトリの可視性を Private から Public に変更。
+- GitHub Pages を有効化し、`main` ブランチのルートをソースとしてデプロイ完了（公開URL: `https://tk030-lotto.github.io/mazu-ugokashitemiyou/`）。
+- `README.md` および `RECORD.md` を公開ステータスに更新。
 
 ### 2026-08-21
 - プライベートリポジトリ `tk030-lotto/mazu-ugokashitemiyou` を新規作成・GitHub連携完了。
