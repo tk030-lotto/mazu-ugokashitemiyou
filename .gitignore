@@ -45,3 +45,6 @@ GEMINI.md
 # 開発ドキュメント（個人パス混入防止）
 implementation_plan*.md
 walkthrough*.md
+
+# 開発ドキュメント除外（フェーズ2-B）
+audit_report*.md
