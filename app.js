@@ -129,8 +129,12 @@ ${envText ? `\n${envText}` : ''}${filesText ? `\n${filesText}` : ''}
     document.body.appendChild(tempArea);
     tempArea.select();
     try {
-      document.execCommand('copy');
-      showToast(successMsg);
+      const copied = document.execCommand('copy');
+      if (copied) {
+        showToast(successMsg);
+      } else {
+        showToast('❌ コピーに失敗しました。手動でコピーしてください。');
+      }
     } catch (e) {
       showToast('❌ コピーに失敗しました。手動でコピーしてください。');
     }
@@ -167,6 +171,18 @@ ${envText ? `\n${envText}` : ''}${filesText ? `\n${filesText}` : ''}
     envInput.value = '';
     filesInput.value = '';
     charCount.textContent = '0 文字';
+    currentPrompt = '';
+    promptDisplay.textContent = '';
+    promptEditArea.value = '';
+    promptDisplay.style.display = 'block';
+    promptEditArea.style.display = 'none';
+    isEditing = false;
+    editToggleBtn.textContent = '✏️ 修正する';
+    checkItems.forEach(item => {
+      const checkbox = item.querySelector('input[type="checkbox"]');
+      if (checkbox) checkbox.checked = false;
+      item.classList.remove('is-checked');
+    });
     resultSection.classList.add('is-hidden');
     verifySection.classList.add('is-hidden');
     userInput.focus();

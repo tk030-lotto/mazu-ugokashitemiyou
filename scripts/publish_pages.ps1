@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # GitHub Pages 公開自動化スクリプト
 # リポジトリをPublic化し、GitHub Pages (mainブランチ / ルート配信) を有効化します
 # ==============================================================================
@@ -34,15 +34,27 @@ Start-Sleep -Seconds 2
 
 # Pages有効化 API呼び出し
 $body = '{"source":{"branch":"main","path":"/"}}'
-$result = gh api --method POST repos/$repoName/pages --input - 2>&1
+$result = $body | gh api --method POST repos/$repoName/pages --input - 2>&1
 if ($LASTEXITCODE -ne 0) {
     # 既に有効化されている場合の更新試行
-    gh api --method PUT repos/$repoName/pages --input - 2>&1 | Out-Null
+    $putResult = $body | gh api --method PUT repos/$repoName/pages --input - 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "❌ GitHub Pages の有効化・更新に失敗しました。" -ForegroundColor Red
+        Write-Host $result -ForegroundColor Red
+        Write-Host $putResult -ForegroundColor Red
+        exit 1
+    }
 }
-Write-Host "  ✅ GitHub Pages 有効化完了" -ForegroundColor Green
+Write-Host "  ✅ GitHub Pages API 呼び出し完了" -ForegroundColor Green
 
 Write-Host "`n[3/3] 公開ステータスを確認しています..." -ForegroundColor Yellow
 Start-Sleep -Seconds 3
+$pagesStatus = gh api repos/$repoName/pages 2>&1
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ GitHub Pages の状態確認に失敗しました。" -ForegroundColor Red
+    Write-Host $pagesStatus -ForegroundColor Red
+    exit 1
+}
 Write-Host ""
 Write-Host "🎉 GitHub Pages への公開設定が完了しました！" -ForegroundColor Cyan
 Write-Host "公開URL: $pagesUrl" -ForegroundColor Green
